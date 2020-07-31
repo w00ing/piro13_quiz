@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for quiz in quizes.all %}
+<div class="box">
+    <h1>{{ quiz.title }} BY {{ quiz.person }}</h1>
+    <ol>
+        <li>
+            <label for="username">{{ quiz.username }}</label> <!---퀴즈를 푼 사람---!>
+            <label for="number">맞은 개수:{{ quiz.number }}</label>
+        </li>
+    </ol>
+    <button type="button"><a href="{%퀴즈목록링크%}">퀴즈 풀기</a></button>
+</div>
+{% endfor %}
+
+{% endblock %}
