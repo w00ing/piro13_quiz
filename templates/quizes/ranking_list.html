@@ -4,12 +4,12 @@
 
 <div class="rank">
     <h1>퀴즈 랭킹 확인</h1>
-    {% for object in Ranking %}
-    <h1>{{ result.title }} BY {{ object.person }}</h1>
+    {% for rank in Ranking %}
+    <h1>{{ rank.title }} BY {{ rank.person }}</h1>
     <ol>
         <li>
-            <label for="name">{{ object.name }}</label>
-            <label for="number">맞은 개수:{{ object.number }}</label>
+            <label for="name">{{ rank.name }}</label>
+            <label for="number">맞은 개수:{{ rank.number }}</label>
         </li>
     </ol>
     {% endfor %}
