@@ -5,7 +5,7 @@
     <div id="mainheader">
         <h1>퀴즈 목록</h1>
         <p>현재 플레이어의 등록된 퀴즈를 보여주는 페이지입니다. 룰루</p>
-        <label class="user">현재 사용자:{{ quiz.user }}</label>
+        <label class="user">현재 사용자: {{ current_user.username }}</label>
     </div>
     <div id="mainquiz">
         <table class="thead thead-dark">
@@ -15,13 +15,13 @@
                 <td scope="col">퀴즈풀기</td>
                 <td scope="col">랭킹확인하기</td>
             </thead>
-            <tbody class="text-light">
-            {% for quiz in Quiz %}
+            <tbody class="text-dark">
+            {% for quiz in quizes %}
             <tr>
                 <td scope="col">{{ quiz.title }}</td>
-                <td>{{ quiz.person }}</td>
+                <td>{{ quiz.user.username }}</td>
                 <td>
-                    <button type="button"><a href="{% url 'quizes:list'%}">퀴즈 풀기</a></button>
+                    <button type="button"><a href="{% url 'quizes:solve-quiz' pk=quiz.user.pk %}">퀴즈 풀기</a></button>
                 </td>
                 <td>
                     <button type="button"><a href="랭킹확인링크">랭킹 확인하기</a></button>

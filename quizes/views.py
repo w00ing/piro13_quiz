@@ -31,18 +31,18 @@ def make_quiz(request):
     answer_6 = request.POST.get("question6", None)
     answer_7 = request.POST.get("question7", None)
 
-    context = {
-        "title": title,
-        "answers": [
-            answer_1,
-            answer_2,
-            answer_3,
-            answer_4,
-            answer_5,
-            answer_6,
-            answer_7,
-        ],
-    }
+    # context = {
+    #     "title": title,
+    #     "answers": [
+    #         answer_1,
+    #         answer_2,
+    #         answer_3,
+    #         answer_4,
+    #         answer_5,
+    #         answer_6,
+    #         answer_7,
+    #     ],
+    # }
 
     Quiz.objects.create(
         title=title,
@@ -55,7 +55,8 @@ def make_quiz(request):
         answer_7=answer_7,
         user=request.user,
     )
-    return render(request, "base.html", context=context)
+    url = reverse("quizes:home")
+    return redirect(to=url)
 
 
 def solve_quiz(request, pk):
@@ -98,27 +99,46 @@ def solve_quiz(request, pk):
         answer_6,
         answer_7,
     ]
+    number_of_matches = 0
+    for index, answer in enumerate(answers):
+        if answer == correct_answers[index]:
+            number_of_matches += 1
+    context = {
+        "number_of_matches": number_of_matches,
+    }
 
-    if answers == correct_answers:
+    return render(request, "quizes/results.html", context=context)
 
-        return render(request, "base.html")
-    else:
-        return render(request, "partials/footer.html")
 
-    return render(request, "base.html")
+def quiz_list(request):
+    current_user = request.user
+    quizes = Quiz.objects.order_by("user")
+
+    context = {
+        "quizes": quizes,
+        "current_user": current_user,
+    }
+
+    return render(request, "quizes/quiz_list.html", context=context)
 
 
 # 2. 퀴즈 목록 화면---------------------------------------------------
-class QuizList(ListView):
-    model = Quiz
-    template_name = "quiz_list.html"
+# class QuizList(ListView):
+#     model = Quiz
+#     template_name = "quiz_list.html"
 
+# def show_ranking(request, pk):
+#     all_users = User.objects.all()
+#     current_user = request.user
+#     quiz_owner = User.objects.get(id=pk)
+
+#     quiz_owner.quizes
 
 # 5. 퀴즈 랭킹 화면---------------------------------------------------
-class RankingList(ListView):
-    model = Ranking
-    rank = Ranking.objects.all().order_by("-number")
-    template_name = "ranking.html"
+# class RankingList(ListView):
+#     model = Ranking
+#     rank = Ranking.objects.all().order_by("-number")
+#     template_name = "ranking.html"
 
 
 # =======

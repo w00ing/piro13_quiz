@@ -1,0 +1,4 @@
+{% extends 'base.html' %} {% block content %}
+<h3>당신의 점수: {{ number_of_matches }}</h3>
+<a href="{% url 'quizes:ranking' %}"><button>랭킹 보러가기</button></a
+><a href="{% url 'quizes:home' %}"><button>홈으로 돌아가기</button></a> {% endblock content %}

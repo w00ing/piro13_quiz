@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <div class="quiz">
 <h1>{{user.quiz.title}}</h1>
-  <form action="{% url 'quizes:solve-quiz' pk=user.pk%}" method="POST">
+  <form action="{% url 'quizes:solve-quiz' pk=quiz_owner.pk%}" method="POST">
     {% csrf_token %}
     <label for="title">Title: </label>
     <div class="question-1">
