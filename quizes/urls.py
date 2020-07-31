@@ -7,13 +7,13 @@ app_name = "quizes"
 urlpatterns = [
     path("", views.home, name="home"),
     path("create/", views.make_quiz, name="make-quiz"),
-    path("users/<int:pk>", views.solve_quiz, name="solve-quiz"),
-    path('list/', views.QuizList.as_view()),
-    path('ranking/', views.RankingList.as_view()),
+    path("<int:pk>/solve/", views.solve_quiz, name="solve-quiz"),
+    path("list/", views.QuizList.as_view(), name="quiz_list"),
+    path("ranking/", views.RankingList.as_view()),
     # path('', views.home, name='home'),
     # path('list/', views.list, name='list'),
     # path('create/', views.create, name='create'),
-    path('quiz/<int:question_id>/', views.quiz, name='quiz'),
-    path('detail<int:question_id>/', views.detail, name='detail'),
+    # path('quiz/<int:question_id>/', views.quiz, name='quiz'),
+    # path('detail<int:question_id>/', views.detail, name='detail'),
 ]
 

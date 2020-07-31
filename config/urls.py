@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("quiz/", include("quizes.urls")),
     path("", include("users.urls")),
-    path('accounts/', include('allauth.urls')),
+    path("quizes/", include("quizes.urls")),
+    path("accounts/", include("allauth.urls")),
+    path("admin/", admin.site.urls),
 ]

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+# <<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -107,58 +107,47 @@ def solve_quiz(request, pk):
 
     return render(request, "base.html")
 
-#2. 퀴즈 목록 화면---------------------------------------------------
+
+# 2. 퀴즈 목록 화면---------------------------------------------------
 class QuizList(ListView):
     model = Quiz
-    template_name = 'list.html'
+    template_name = "quiz_list.html"
 
-#5. 퀴즈 랭킹 화면---------------------------------------------------
+
+# 5. 퀴즈 랭킹 화면---------------------------------------------------
 class RankingList(ListView):
     model = Ranking
-    rank = Ranking.objects.all().order_by('-number')
-    template_name = 'ranking.html'
+    rank = Ranking.objects.all().order_by("-number")
+    template_name = "ranking.html"
 
 
-#2. 퀴즈 목록 화면---------------------------------------------------
-class QuizList(ListView):
-    model = Quiz
-    template_name = 'list.html'
+# =======
+# from django.shortcuts import render
+# from django.http import HttpResponse
 
-#5. 퀴즈 랭킹 화면---------------------------------------------------
-class RankingList(ListView):
-    model = Ranking
-    rank = Ranking.objects.all().order_by('-number')
-    template_name = 'ranking.html'
+# from .models import Question
 
+# def home(request):
+#     return HttpResponse("making views")
 
-=======
-from django.shortcuts import render
-from django.http import HttpResponse
-
-from .models import Question
-
-def home(request):
-    return HttpResponse("making views")
-
-def list(request):  ################
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    context = ' || '.join([q.question_text for q in latest_question_list])
-   # context = {'latest_question_list': latest_question_list}
-    return HttpResponse(context)
-   # return render(request, 'quizes/list.html', context)
+# def list(request):  ################
+#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
+#     context = ' || '.join([q.question_text for q in latest_question_list])
+#    # context = {'latest_question_list': latest_question_list}
+#     return HttpResponse(context)
+#    # return render(request, 'quizes/list.html', context)
 
 
+# def create(request):
+#     return HttpResponse("create")
 
-def create(request):
-    return HttpResponse("create")
-
-def quiz(request, question_id):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
-    context = {'latest_question_list': latest_question_list}
-    return render(request, 'quizes/quiz.html', context)
+# def quiz(request, question_id):
+#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
+#     context = {'latest_question_list': latest_question_list}
+#     return render(request, 'quizes/quiz.html', context)
 
 
-## 위아래 question_id 대응
-def detail(request, question_id):
-    return HttpResponse("detail")
->>>>>>> origin/yejin
+# ## 위아래 question_id 대응
+# def detail(request, question_id):
+#     return HttpResponse("detail")
+# >>>>>>> origin/yejin
