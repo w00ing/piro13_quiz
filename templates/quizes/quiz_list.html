@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main">
+    <div id="mainheader">
+        <h1>퀴즈 목록</h1>
+        <p>현재 플레이어의 등록된 퀴즈를 보여주는 페이지입니다. 룰루</p>
+        <label class="user">현재 사용자:{{ quiz.user }}</label>
+    </div>
+    <div id="mainquiz">
+        <table class="thead thead-dark">
+            <td scope="col">제목</td>
+            <td scope="col">출제자</td>
+            <td scope="col">퀴즈풀기</td>
+            <td scope="col">랭킹확인하기</td>
+
+            <tbody class="text-light">
+            {% for quiz in Quiz %}
+            <tr>
+                <td scope="col">{{ quiz.title }}</td>
+                <td>{{ quiz.person }}</td>
+                <td>
+                    <button type="button">퀴즈 풀기</button>
+                </td>
+                <td>
+                    <button type="button">랭킹 확인하기</button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

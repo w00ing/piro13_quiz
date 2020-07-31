@@ -1,9 +1,12 @@
-import data as data
-from django.shortcuts import render
+from django.views.generic.list import ListView
+from .models import Quiz
+
+#2. 퀴즈 목록 화면---------------------------------------------------
+
+class QuizList(ListView):
+    model = Quiz
+    template_name = 'list.html'
 
 
-def index(request):
-    return render(request, 'quizes/index.html', data)
 
-def detail(request):
-    return render(request, 'quizes/detail.html', data)
+
