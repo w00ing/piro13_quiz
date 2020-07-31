@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="rank">
+    <h1>퀴즈 랭킹 확인</h1>
+    {% for object in Ranking %}
+    <h1>{{ result.title }} BY {{ object.person }}</h1>
+    <ol>
+        <li>
+            <label for="name">{{ object.name }}</label>
+            <label for="number">맞은 개수:{{ object.number }}</label>
+        </li>
+    </ol>
+    {% endfor %}
+    <button type="button"><a href="퀴즈목록링크">퀴즈 목록</a></button>
+</div>
+
+{% endblock %}

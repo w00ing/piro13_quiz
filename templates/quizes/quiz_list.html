@@ -9,21 +9,22 @@
     </div>
     <div id="mainquiz">
         <table class="thead thead-dark">
-            <td scope="col">제목</td>
-            <td scope="col">출제자</td>
-            <td scope="col">퀴즈풀기</td>
-            <td scope="col">랭킹확인하기</td>
-
+            <thead>
+                <td scope="col">제목</td>
+                <td scope="col">출제자</td>
+                <td scope="col">퀴즈풀기</td>
+                <td scope="col">랭킹확인하기</td>
+            </thead>
             <tbody class="text-light">
             {% for quiz in Quiz %}
             <tr>
                 <td scope="col">{{ quiz.title }}</td>
                 <td>{{ quiz.person }}</td>
                 <td>
-                    <button type="button">퀴즈 풀기</button>
+                    <button type="button"><a href="퀴즈풀기링크">퀴즈 풀기</a></button>
                 </td>
                 <td>
-                    <button type="button">랭킹 확인하기</button>
+                    <button type="button"><a href="랭킹확인링크">랭킹 확인하기</a></button>
                 </td>
             </tr>
             {% endfor %}
