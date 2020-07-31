@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 <div class="quiz">
 <h1>퀴즈 생성하기</h1>
-<h4>현재 사용자: </h4>
-  <form action="{% url 'quizes:make-quiz' %}" method="POST">
+<h4>현재 사용자: {{ user.username }}</h4>
+  <form action="{% url 'quizes:make-quiz'%}" method="POST">
     {% csrf_token %}
     <label for="title">Title: </label>
-    <input type="text" id="title">
+    <input type="text" id="title" name="title">
     <div class="question-1">
       <label for="1">1</label>
       <input type="radio" name="question1" value="1" id="1" />

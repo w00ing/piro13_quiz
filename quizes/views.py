@@ -4,10 +4,15 @@ from quizes.models import Quiz
 
 
 # Render Quiz Solving Page
-def make_quiz(request, pk):
+def make_quiz(request):
+    user = request.user
+
+    context = {
+        "user": user,
+    }
 
     if request.method == "GET":
-        return render(request, "quizes/make-quiz.html",)
+        return render(request, "quizes/make-quiz.html", context=context)
 
     title = request.POST.get("title", None)
     answer_1 = request.POST.get("question1", None)
@@ -40,8 +45,12 @@ def make_quiz(request, pk):
         answer_5=answer_5,
         answer_6=answer_6,
         answer_7=answer_7,
-        user=User.objects.get(id=pk),
+        user=request.user,
     )
 
-    return render(request, "users/home.html", context=context)
+    return render(request, "base.html", context=context)
 
+
+def solve_quiz(request):
+    # return render(request, "")
+    pass
