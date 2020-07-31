@@ -2,7 +2,10 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
-from quizes.models import Quiz
+from django.contrib import messages
+
+# from users.models import SolvedUser
+from quizes.models import Quiz, SolvedUser
 from django.views.generic.list import ListView
 from .models import Quiz, Ranking
 
@@ -44,24 +47,28 @@ def make_quiz(request):
     #     ],
     # }
 
-    Quiz.objects.create(
-        title=title,
-        answer_1=answer_1,
-        answer_2=answer_2,
-        answer_3=answer_3,
-        answer_4=answer_4,
-        answer_5=answer_5,
-        answer_6=answer_6,
-        answer_7=answer_7,
-        user=request.user,
-    )
-    url = reverse("users:home")
-    return redirect(to=url)
+    try:
+        Quiz.objects.create(
+            title=title,
+            answer_1=answer_1,
+            answer_2=answer_2,
+            answer_3=answer_3,
+            answer_4=answer_4,
+            answer_5=answer_5,
+            answer_6=answer_6,
+            answer_7=answer_7,
+            user=request.user,
+        )
+        url = reverse("users:home")
+        return redirect(to=url)
+
+    except:
+        return render(request, "users/existing_user.html")
 
 
 def solve_quiz(request, pk):
     current_user = request.user
-    quiz_owner = User.objects.get(id=pk)
+    quiz_owner = User.objects.get(pk=pk)
 
     if request.method == "GET":
 
@@ -106,6 +113,11 @@ def solve_quiz(request, pk):
         "number_of_matches": number_of_matches,
     }
 
+    # solved_user = current_user
+    # # solved_user.save()
+    # solved_user.quiz.add(current_user.quiz)
+    # print(SolvedUser.objects.all())
+
     return render(request, "quizes/results.html", context=context)
 
 
@@ -121,52 +133,13 @@ def quiz_list(request):
     return render(request, "quizes/quiz_list.html", context=context)
 
 
-# 2. 퀴즈 목록 화면---------------------------------------------------
-# class QuizList(ListView):
-#     model = Quiz
-#     template_name = "quiz_list.html"
+def quiz_ranking(request, pk):
+    quiz = request.user.quiz
+    solved_users = SolvedUser.objects.filter(solved_quiz=quiz)
+    print(solved_users)
 
-# def show_ranking(request, pk):
-#     all_users = User.objects.all()
-#     current_user = request.user
-#     quiz_owner = User.objects.get(id=pk)
+    context = {
+        "solved_users": solved_users,
+    }
+    return render(request, "quizes/ranking_list.html", context=context)
 
-#     quiz_owner.quizes
-
-# 5. 퀴즈 랭킹 화면---------------------------------------------------
-# class RankingList(ListView):
-#     model = Ranking
-#     rank = Ranking.objects.all().order_by("-number")
-#     template_name = "ranking.html"
-
-
-# =======
-# from django.shortcuts import render
-# from django.http import HttpResponse
-
-# from .models import Question
-
-# def home(request):
-#     return HttpResponse("making views")
-
-# def list(request):  ################
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     context = ' || '.join([q.question_text for q in latest_question_list])
-#    # context = {'latest_question_list': latest_question_list}
-#     return HttpResponse(context)
-#    # return render(request, 'quizes/list.html', context)
-
-
-# def create(request):
-#     return HttpResponse("create")
-
-# def quiz(request, question_id):
-#     latest_question_list = Question.objects.order_by('-pub_date')[:5]
-#     context = {'latest_question_list': latest_question_list}
-#     return render(request, 'quizes/quiz.html', context)
-
-
-# ## 위아래 question_id 대응
-# def detail(request, question_id):
-#     return HttpResponse("detail")
-# >>>>>>> origin/yejin

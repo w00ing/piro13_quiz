@@ -1,66 +1,70 @@
 {% extends 'base.html' %} {% block content %}
 <div class="quiz">
-<h1>퀴즈 생성하기</h1>
-<h4>현재 사용자: {{ user.username }}</h4>
+  <h1>퀴즈 생성하기</h1>
+  <h4>현재 사용자: {{ user.username }}</h4>
   <form action="{% url 'quizes:make-quiz'%}" method="POST">
     {% csrf_token %}
-    <label for="title">Title: </label>
-    <input type="text" id="title" name="title">
+    <label for="title">Balance Game</label>
     <div class="question-1">
-      <label for="1">1</label>
+      <label for="1">돈</label>
       <input type="radio" name="question1" value="1" id="1" />
-      <label for="2">2</label>
+      <label for="2">사랑</label>
       <input type="radio" name="question1" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question1" value="3" id="3" />
     </div>
+
     <div class="question-2">
-      <label for="1">1</label>
+      <label for="1">소주</label>
       <input type="radio" name="question2" value="1" id="1" />
-      <label for="2">2</label>
+      <label for="2">맥주</label>
       <input type="radio" name="question2" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question2" value="3" id="3" />
     </div>
     <div class="question-3">
-      <label for="1">1</label>
+      <label for="1">산</label>
       <input type="radio" name="question3" value="1" id="1" />
-      <label for="2">2</label>
+      <label for="2">바다</label>
       <input type="radio" name="question3" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question3" value="3" id="3" />
     </div>
     <div class="question-4">
-      <label for="1">1</label>
-      <input type="radio" name="question4" value="1" id="1" />
-      <label for="2">2</label>
-      <input type="radio" name="question4" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question4" value="3" id="3" />
+      <label for="1">부릉부릉</label>
+      <input type="radio" name="question4" value="4" id="4" />
+      <label for="2">김유빈</label>
+      <input type="radio" name="question4" value="5" id="5" />
     </div>
     <div class="question-5">
-      <label for="1">1</label>
+      <label for="1">삼성</label>
       <input type="radio" name="question5" value="1" id="1" />
-      <label for="2">2</label>
+      <label for="2">애플</label>
       <input type="radio" name="question5" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question5" value="3" id="3" />
     </div>
     <div class="question-6">
-      <label for="1">1</label>
+      <label for="1">치킨</label>
       <input type="radio" name="question6" value="1" id="1" />
-      <label for="2">2</label>
+      <label for="2">피자</label>
       <input type="radio" name="question6" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question6" value="3" id="3" />
     </div>
     <div class="question-7">
-      <label for="1">1</label>
+      <label for="1">평생 고기 안먹기</label>
       <input type="radio" name="question7" value="1" id="1" />
-      <label for="2">2</label>
+      <label for="2">평생 밀가루 안먹기</label>
       <input type="radio" name="question7" value="2" id="2" />
-      <label for="3">3</label>
-      <input type="radio" name="question7" value="3" id="3" />
+    </div>
+    <div class="question-8">
+      <label for="1">다음생 남자</label>
+      <input type="radio" name="question8" value="1" id="1" />
+      <label for="2">다음생 여자</label>
+      <input type="radio" name="question8" value="2" id="2" />
+    </div>
+    <div class="question-9">
+      <label for="1">엄마</label>
+      <input type="radio" name="question9" value="1" id="1" />
+      <label for="2">아빠</label>
+      <input type="radio" name="question9" value="2" id="2" />
+    </div>
+    <div class="question-10">
+      <label for="1">피로그래밍 좋아한다</label>
+      <input type="radio" name="question10" value="1" id="1" />
+      <label for="2">피로그래밍 애정한다</label>
+      <input type="radio" name="question10" value="2" id="2" />
     </div>
     <button type="submit">제출</button>
   </form>

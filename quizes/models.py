@@ -5,6 +5,11 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+class SolvedUser(models.Model):
+
+    quiz = models.ManyToManyField("Quiz", related_name="solved_users")
+
+
 class Quiz(models.Model):
 
     user = models.OneToOneField(
