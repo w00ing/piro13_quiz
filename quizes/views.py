@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.models import User
 from quizes.models import Quiz
+from django.views.generic.list import ListView
+from .models import Quiz, Ranking
 
 
 # Render Homepage
@@ -103,4 +105,28 @@ def solve_quiz(request, pk):
         return render(request, "partials/footer.html")
 
     return render(request, "base.html")
+
+#2. 퀴즈 목록 화면---------------------------------------------------
+class QuizList(ListView):
+    model = Quiz
+    template_name = 'list.html'
+
+#5. 퀴즈 랭킹 화면---------------------------------------------------
+class RankingList(ListView):
+    model = Ranking
+    rank = Ranking.objects.all().order_by('-number')
+    template_name = 'ranking.html'
+
+
+#2. 퀴즈 목록 화면---------------------------------------------------
+class QuizList(ListView):
+    model = Quiz
+    template_name = 'list.html'
+
+#5. 퀴즈 랭킹 화면---------------------------------------------------
+class RankingList(ListView):
+    model = Ranking
+    rank = Ranking.objects.all().order_by('-number')
+    template_name = 'ranking.html'
+
 
