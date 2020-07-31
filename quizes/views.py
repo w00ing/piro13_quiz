@@ -55,7 +55,7 @@ def make_quiz(request):
         answer_7=answer_7,
         user=request.user,
     )
-    url = reverse("quizes:home")
+    url = reverse("users:home")
     return redirect(to=url)
 
 
