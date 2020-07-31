@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # Providers: 구글, 페이스북, 카톡, 깃헙
     "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.kakao",
+
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,5 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = "/"
+
+SOCIALACCOUNT_EMAIL_VARIFICATION = 'none'
