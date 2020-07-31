@@ -3,9 +3,9 @@
     <h1>나를 가장 잘 아는 피로그래머는 누구일까요?</h1>
 
     {% if user.is_authenticated %}
-        {% comment %} <div><a href="{% url 'quizes:make-quiz' %}">퀴즈 내러가기</a></div> {% endcomment %}
-        {% comment %} <div><a href="{% url 'quizes:list' %}">퀴즈 맞추러가기</a></div> {% endcomment %}
+        <div><a href="{% url 'quizes:make-quiz' %}">퀴즈 내러가기</a></div>
+        <div><a href="{% url 'quizes:list' %}">퀴즈 맞추러가기</a></div>
     {% else %}
-        <div><a>퀴즈 맞추러가기</a></div>
+        <div><a href="{% url 'quizes:list' %}">퀴즈 맞추러가기</a></div>
     {% endif %}
 {% endblock %}
