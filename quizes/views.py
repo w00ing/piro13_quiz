@@ -6,6 +6,7 @@ class QuizList(ListView):
     model = Quiz
     template_name = 'list.html'
 
+
 #5. 퀴즈 랭킹 화면---------------------------------------------------
 class RankingList(ListView):
     model = Ranking
