@@ -10,5 +10,10 @@ urlpatterns = [
     path("users/<int:pk>", views.solve_quiz, name="solve-quiz"),
     path('list/', views.QuizList.as_view()),
     path('ranking/', views.RankingList.as_view()),
+    # path('', views.home, name='home'),
+    # path('list/', views.list, name='list'),
+    # path('create/', views.create, name='create'),
+    path('quiz/<int:question_id>/', views.quiz, name='quiz'),
+    path('detail<int:question_id>/', views.detail, name='detail'),
 ]
 
