@@ -60,7 +60,6 @@ def make_quiz(request):
 
 
 def solve_quiz(request, pk):
-
     current_user = request.user
     quiz_owner = User.objects.get(id=pk)
 

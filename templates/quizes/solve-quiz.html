@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <div class="quiz">
-<h1>{{user.quiz.title}}</h1>
+<h1>{{quiz_owner.username}}</h1>
   <form action="{% url 'quizes:solve-quiz' pk=quiz_owner.pk%}" method="POST">
     {% csrf_token %}
-    <label for="title">Title: </label>
+    <label for="title">Title: {{ quiz_owner.quiz.title }} </label>
     <div class="question-1">
       <label for="1">1</label>
       <input type="radio" name="question1" value="1" id="1" />
